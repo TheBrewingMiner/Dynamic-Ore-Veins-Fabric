@@ -1,6 +1,7 @@
 package net.thebrewingminer.dynamicoreveins;
 
 import net.fabricmc.api.ModInitializer;
+import net.thebrewingminer.dynamicoreveins.event.LifecycleServerEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,5 +18,7 @@ public class DynamicOreVeins implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		LifecycleServerEvent.registerEvents();
 	}
 }
