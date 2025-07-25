@@ -4,6 +4,11 @@
   "package": "net.thebrewingminer.dynamicoreveins.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ChunkGeneratorMixin",
+    "ChunkGeneratorSettingsMixin",
+    "ChunkNoiseSamplerMixin",
+    "NoiseChunkGeneratorMixin",
+    "ServerWorldMixin"
   ],
   "client": [],
   "injectors": {
