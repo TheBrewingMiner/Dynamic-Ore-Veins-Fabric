@@ -24,7 +24,7 @@ public class NoiseChunkGeneratorMixin {
     )
     private void attachWorldgenContext(Chunk chunk, StructureAccessor world, Blender blender, NoiseConfig noiseConfig, CallbackInfoReturnable<ChunkNoiseSampler> cir){
         // Grab the noise chunk being created by NoiseChunkGenerator.
-        ChunkNoiseSampler chunkNoiseSampler = cir.getReturnValue();
+        ChunkNoiseSampler noiseChunk = cir.getReturnValue();
 
         // Grab this instance of ChunkGenerator (this NoiseChunkGenerator calling createChunkNoiseSampler())
         ChunkGenerator chunkGenerator = (ChunkGenerator)(Object)this;
@@ -36,7 +36,7 @@ public class NoiseChunkGeneratorMixin {
         HeightLimitView heightLimitView = chunk.getHeightLimitView();
 
         // Grab the cached chunk generator settings stored by ISettingsAccessor in ChunkNoiseSampler.
-        ChunkGeneratorSettings chunkGenSettings = ((ISettingsAccessor)chunkNoiseSampler).getChunkGenSettings();
+        ChunkGeneratorSettings chunkGenSettings = ((ISettingsAccessor)noiseChunk).getChunkGenSettings();
 
         // Store the gathered info into IWorldgenContext in the chunk gen settings (Stored into IWorldgenContext in ChunkGeneratorSettings).
         IWorldgenContext wgContext = (IWorldgenContext)(Object)chunkGenSettings;
