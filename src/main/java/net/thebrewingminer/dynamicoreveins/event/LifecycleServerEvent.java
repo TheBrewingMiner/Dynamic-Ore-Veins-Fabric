@@ -7,7 +7,7 @@ import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
 import net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistryHolder;
 
 public class LifecycleServerEvent {
-  public static void onServerStarted(){
+  public static void onServerStarting(){
       ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
           // Get the registry manager and store it for use in OreVeinRegistryHolder.
           if (!OreVeinRegistryHolder.isInitialized()){
@@ -24,6 +24,6 @@ public class LifecycleServerEvent {
   }
 
   public static void registerEvents(){
-      onServerStarted();
+      onServerStarting();
   }
 }
