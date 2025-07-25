@@ -2,14 +2,9 @@ package net.thebrewingminer.dynamicoreveins;
 
 import net.fabricmc.api.ModInitializer;
 import net.thebrewingminer.dynamicoreveins.event.LifecycleServerEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistries;
 
 public class DynamicOreVeins implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("modid");
 
 	@Override
 	public void onInitialize() {
@@ -17,8 +12,7 @@ public class DynamicOreVeins implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
-
+		OreVeinRegistries.register();
 		LifecycleServerEvent.registerEvents();
 	}
 }
