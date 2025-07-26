@@ -18,6 +18,10 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/dynamic_ore_veins.accesswidener")
+}
+
 base {
 	archivesName = project.archives_base_name
 }

@@ -13,10 +13,15 @@ import net.minecraft.world.gen.noise.NoiseConfig;
 import net.thebrewingminer.dynamicoreveins.accessor.ISettingsAccessor;
 import net.thebrewingminer.dynamicoreveins.accessor.IWorldgenContext;
 import net.thebrewingminer.dynamicoreveins.accessor.WorldSeedHolder;
+import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
 import net.thebrewingminer.dynamicoreveins.codec.condition.IVeinCondition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+import java.util.List;
+
+import static net.thebrewingminer.dynamicoreveins.main.DynamicVeinSampler.selectVein;
 
 @Mixin(ChunkNoiseSampler.class)
 public class CreateVein {
@@ -75,9 +80,9 @@ public class CreateVein {
 
             // Prepare the order in which to test veins.
             // Method call here.
+            List<OreVeinConfig> veinList = null;
 
-            // Call vein sampler here.
-
+            return selectVein(functionContext, veinToggle, veinRidged, veinGap, veinList, veinContext);
         };
     }
 }
