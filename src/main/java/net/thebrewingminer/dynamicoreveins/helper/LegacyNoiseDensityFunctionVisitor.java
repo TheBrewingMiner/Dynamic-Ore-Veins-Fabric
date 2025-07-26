@@ -32,8 +32,7 @@ public class LegacyNoiseDensityFunctionVisitor implements DensityFunction.Densit
     }
 
     private Random createRandom(long noiseSeed){
-        return new CheckedRandom(seed + noiseSeed) {
-        };
+        return new CheckedRandom(seed + noiseSeed);
     }
 
     public DensityFunction.Noise apply(DensityFunction.Noise noiseDensityFunction) {
