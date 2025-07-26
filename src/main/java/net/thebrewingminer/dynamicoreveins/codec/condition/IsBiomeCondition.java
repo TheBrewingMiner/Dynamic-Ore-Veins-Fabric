@@ -6,7 +6,6 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.event.listener.GameEventListener;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import static net.minecraft.world.biome.source.BiomeCoords.fromBlock;
