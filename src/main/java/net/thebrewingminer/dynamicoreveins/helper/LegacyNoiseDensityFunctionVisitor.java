@@ -16,6 +16,7 @@ import net.thebrewingminer.dynamicoreveins.codec.condition.IVeinCondition;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings({"RedundantArrayCreation", "deprecation"})
 public class LegacyNoiseDensityFunctionVisitor implements DensityFunction.DensityFunctionVisitor{
     private final Map<DensityFunction, DensityFunction> cache = new HashMap<>();
     private final long seed;
@@ -30,8 +31,9 @@ public class LegacyNoiseDensityFunctionVisitor implements DensityFunction.Densit
         this.randomSplitter = context.randomSplitter();
     }
 
-    private CheckedRandom createRandom(long noiseSeed){
-        return new CheckedRandom(seed + noiseSeed);
+    private Random createRandom(long noiseSeed){
+        return new CheckedRandom(seed + noiseSeed) {
+        };
     }
 
     public DensityFunction.Noise apply(DensityFunction.Noise noiseDensityFunction) {
