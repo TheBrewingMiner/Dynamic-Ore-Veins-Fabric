@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
+import net.thebrewingminer.dynamicoreveins.codec.condition.DensityFunctionThreshold;
 import net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistryHolder;
 
 public class LifecycleServerEvent {
@@ -23,7 +24,15 @@ public class LifecycleServerEvent {
       });
   }
 
+  public static void onServerStopped(){
+      ServerLifecycleEvents.SERVER_STOPPED.register((server) -> {
+          DensityFunctionThreshold.clearCache();
+
+      });
+  }
+
   public static void registerEvents(){
       onServerStarting();
+      onServerStopped();
   }
 }
