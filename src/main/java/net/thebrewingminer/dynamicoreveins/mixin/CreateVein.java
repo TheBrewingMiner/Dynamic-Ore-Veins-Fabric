@@ -27,6 +27,7 @@ import static net.thebrewingminer.dynamicoreveins.main.DynamicOreVeinSampler.sel
 @Mixin(ChunkNoiseSampler.class)
 public class CreateVein {
 
+    @SuppressWarnings("DataFlowIssue")
     @Redirect(
         method = "<init>",
         at = @At(
