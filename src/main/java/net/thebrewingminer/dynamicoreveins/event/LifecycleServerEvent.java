@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
+import net.thebrewingminer.dynamicoreveins.codec.VeinSettingsConfig;
 import net.thebrewingminer.dynamicoreveins.codec.condition.DensityFunctionThreshold;
 import net.thebrewingminer.dynamicoreveins.helper.ExtractHeightConditions;
 import net.thebrewingminer.dynamicoreveins.helper.PrepareList;
@@ -22,6 +23,15 @@ public class LifecycleServerEvent {
               // Verify we got it and see how many configs are loaded.
               Registry<OreVeinConfig> veinRegistry = OreVeinRegistryHolder.getVeinRegistry();
               System.out.println("[DOV] Ore Vein Registry size: " + veinRegistry.size());
+
+              Registry<VeinSettingsConfig> configRegistry = OreVeinRegistryHolder.getConfigRegistry();
+              if ((configRegistry.size() == 1)) {
+                  System.out.println("[DOV] 1 config loaded!");
+              } else if (configRegistry.size() == 0){
+                  throw new IllegalStateException("Missing vein settings file in ~config/vein_settings/*! Where'd it go?");
+              } else {
+                  System.err.println("[DOV] More than one config loaded. Are you sure?");
+              }
           }
       });
   }
