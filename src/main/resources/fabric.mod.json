@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "dynamic_ore_veins",
   "version": "${version}",
-
   "name": "Dynamic Ore Veins",
   "description": "An API that exposes Vanilla ore vein generation logic with some extras via JSON!",
   "authors": [
@@ -12,9 +11,8 @@
     "homepage": "https://github.com/TheBrewingMiner/DOV-Homepage",
     "sources": "https://github.com/TheBrewingMiner/Dynamic-Ore-Veins-Fabric"
   },
-
   "license": "MIT License",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/dynamic_ore_veins/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
