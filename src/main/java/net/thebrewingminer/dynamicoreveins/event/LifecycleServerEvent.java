@@ -5,6 +5,8 @@ import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
 import net.thebrewingminer.dynamicoreveins.codec.condition.DensityFunctionThreshold;
+import net.thebrewingminer.dynamicoreveins.helper.ExtractHeightConditions;
+import net.thebrewingminer.dynamicoreveins.helper.PrepareList;
 import net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistryHolder;
 
 public class LifecycleServerEvent {
@@ -26,8 +28,10 @@ public class LifecycleServerEvent {
 
   public static void onServerStopped(){
       ServerLifecycleEvents.SERVER_STOPPED.register((server) -> {
+          // Clear the cached data once the server has stopped.
           DensityFunctionThreshold.clearCache();
-
+          ExtractHeightConditions.clearCache();
+          PrepareList.clearCache();
       });
   }
 

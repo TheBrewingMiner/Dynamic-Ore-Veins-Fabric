@@ -1,0 +1,55 @@
+package net.thebrewingminer.dynamicoreveins.main;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.thebrewingminer.dynamicoreveins.codec.OreRichnessSettings;
+import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
+import net.thebrewingminer.dynamicoreveins.codec.condition.DensityFunctionThreshold;
+import net.thebrewingminer.dynamicoreveins.codec.condition.HeightRangeCondition;
+
+import java.util.Collections;
+
+public class DefaultVanillaVein {
+    private DefaultVanillaVein(){}
+
+//    OreVeinSampler.VeinType veinType = veinToggle.compute(functionContext) > 0.0 ? OreVeinSampler.VeinType.COPPER : OreVeinSampler.VeinType.IRON;
+
+    // Default for the vanilla iron vein.
+    protected static OreVeinConfig IRON_VEIN = new OreVeinConfig(
+            BlockStateProvider.of(Blocks.DEEPSLATE_IRON_ORE),   // Primary ore.
+            BlockStateProvider.of(Blocks.RAW_IRON_BLOCK),       // Secondary ore.
+             0.02f,                                             // Vanilla secondary ore chance
+            BlockStateProvider.of(Blocks.TUFF),                 // Filler block
+            new DensityFunctionThreshold(null, Double.NEGATIVE_INFINITY, 0.0),  // Will use the vein toggle provided by the router; succeeds if its value is <= 0.0.
+            DensityFunctionThreshold.createDefault(),       // Uses the vein ridged function provided by the noise router.
+            DensityFunctionThreshold.createDefault(),       // Uses the vein gap function provided by the noise router.
+            OreRichnessSettings.createDefault(),            // Uses vanilla constants.
+            Collections.singletonList(World.OVERWORLD),     // Only in the overworld.
+            new HeightRangeCondition(YOffset.fixed(-60), YOffset.fixed(-8))    // The min and max Y range in Vanilla.
+    );
+
+    // Default for the vanilla copper vein.
+    protected static OreVeinConfig COPPER_VEIN = new OreVeinConfig(
+            BlockStateProvider.of(Blocks.COPPER_ORE),       // Primary ore.
+            BlockStateProvider.of(Blocks.RAW_COPPER_BLOCK), // Secondary ore.
+            0.02f,                                          // Vanilla secondary ore chance
+            BlockStateProvider.of(Blocks.GRANITE),          // Filler block
+            new DensityFunctionThreshold(null, Double.MIN_VALUE, Double.POSITIVE_INFINITY), // Will use the vein toggle provided by the router; succeeds if its value is > 0.0.
+            DensityFunctionThreshold.createDefault(),       // Uses the vein ridged function provided by the noise router.
+            DensityFunctionThreshold.createDefault(),       // Uses the vein gap function provided by the noise router.
+            OreRichnessSettings.createDefault(),            // Uses vanilla constants.
+            Collections.singletonList(World.OVERWORLD),     // Only in the overworld.
+            new HeightRangeCondition(YOffset.fixed(0), YOffset.fixed(50))    // The min and max Y range in Vanilla.
+    );
+
+    // Getters.
+    public static OreVeinConfig ironVein(){
+        return IRON_VEIN;
+    }
+
+    public static OreVeinConfig copperVein(){
+        return COPPER_VEIN;
+    }
+}

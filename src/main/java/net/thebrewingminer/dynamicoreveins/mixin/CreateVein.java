@@ -21,7 +21,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 
-import static net.thebrewingminer.dynamicoreveins.main.DynamicVeinSampler.selectVein;
+import static net.thebrewingminer.dynamicoreveins.helper.PrepareList.getOrShuffleList;
+import static net.thebrewingminer.dynamicoreveins.main.DynamicOreVeinSampler.selectVein;
 
 @Mixin(ChunkNoiseSampler.class)
 public class CreateVein {
@@ -79,8 +80,7 @@ public class CreateVein {
             };
 
             // Prepare the order in which to test veins.
-            // Method call here.
-            List<OreVeinConfig> veinList = null;
+            List<OreVeinConfig> veinList = getOrShuffleList(functionContext, veinContext);
 
             return selectVein(functionContext, veinToggle, veinRidged, veinGap, veinList, veinContext);
         };

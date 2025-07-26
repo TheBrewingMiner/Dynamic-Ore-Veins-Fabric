@@ -8,8 +8,8 @@ import net.thebrewingminer.dynamicoreveins.helper.HeightRangeWrapper;
 
 import java.util.List;
 
-public class DynamicVeinSampler {
-    private DynamicVeinSampler(){}
+public class DynamicOreVeinSampler {
+    private DynamicOreVeinSampler(){}
 
     public static BlockState selectVein(DensityFunction.NoisePos functionContext, DensityFunction routerVeinToggle, DensityFunction routerVeinRidged, DensityFunction routerVeinGap, List<OreVeinConfig> veinList, IVeinCondition.Context veinContext){
         return null;
