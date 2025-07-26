@@ -21,7 +21,9 @@
       "net.thebrewingminer.dynamicoreveins.DynamicOreVeins"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "dynamic_ore_veins.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.14.19",
     "fabric-api": "*",
