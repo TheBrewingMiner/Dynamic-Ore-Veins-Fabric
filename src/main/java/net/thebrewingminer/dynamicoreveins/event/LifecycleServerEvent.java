@@ -14,24 +14,22 @@ public class LifecycleServerEvent {
   public static void onServerStarting(){
       ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
           // Get the registry manager and store it for use in OreVeinRegistryHolder.
-          if (!OreVeinRegistryHolder.isInitialized()){
-              DynamicRegistryManager.Immutable registryManager = server.getRegistryManager();
-              OreVeinRegistryHolder.init(registryManager);
+          DynamicRegistryManager.Immutable registryManager = server.getRegistryManager();
+          OreVeinRegistryHolder.init(registryManager);
 
-              System.out.println("[DOV] Registry initialized on server start.");
+          System.out.println("[DOV] Registry initialized on server start.");
 
-              // Verify we got it and see how many configs are loaded.
-              Registry<OreVeinConfig> veinRegistry = OreVeinRegistryHolder.getVeinRegistry();
-              System.out.println("[DOV] Ore Vein Registry size: " + veinRegistry.size());
+          // Verify we got it and see how many configs are loaded.
+          Registry<OreVeinConfig> veinRegistry = OreVeinRegistryHolder.getVeinRegistry();
+          System.out.println("[DOV] Ore Vein Registry size: " + veinRegistry.size());
 
-              Registry<VeinSettingsConfig> configRegistry = OreVeinRegistryHolder.getConfigRegistry();
-              if ((configRegistry.size() == 1)) {
-                  System.out.println("[DOV] 1 config loaded!");
-              } else if (configRegistry.size() == 0){
-                  throw new IllegalStateException("Missing vein settings file in ~config/vein_settings/*! Where'd it go?");
-              } else {
-                  System.err.println("[DOV] More than one config loaded. Are you sure?");
-              }
+          Registry<VeinSettingsConfig> configRegistry = OreVeinRegistryHolder.getConfigRegistry();
+          if ((configRegistry.size() == 1)) {
+              System.out.println("[DOV] 1 config loaded!");
+          } else if (configRegistry.size() == 0){
+              throw new IllegalStateException("Missing vein settings file in ~config/vein_settings/*! Where'd it go?");
+          } else {
+              System.err.println("[DOV] More than one config loaded. Are you sure?");
           }
       });
   }
@@ -42,6 +40,7 @@ public class LifecycleServerEvent {
           DensityFunctionThreshold.clearCache();
           ExtractHeightConditions.clearCache();
           PrepareList.clearCache();
+          System.out.println("[DOV] Cleared all cached data.");
       });
   }
 
