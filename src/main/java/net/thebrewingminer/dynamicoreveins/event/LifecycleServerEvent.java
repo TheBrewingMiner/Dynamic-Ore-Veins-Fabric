@@ -36,11 +36,17 @@ public class LifecycleServerEvent {
 
   public static void onServerStopped(){
       ServerLifecycleEvents.SERVER_STOPPED.register((server) -> {
-          // Clear the cached data once the server has stopped.
+          // Clears all caches on world close.
+
           DensityFunctionThreshold.clearCache();
+          OreVeinRegistryHolder.getConfigRegistry().forEach(VeinSettingsConfig::clearCache);
+          System.out.println("[DOV] Cleared density function caches.");
+
           ExtractHeightConditions.clearCache();
+          System.out.println("[DOV] Cleared HeightRangeCondition lists cache.");
+
           PrepareList.clearCache();
-          System.out.println("[DOV] Cleared all cached data.");
+          System.out.println("[DOV] Cleared shuffled vein lists cache.");
       });
   }
 
