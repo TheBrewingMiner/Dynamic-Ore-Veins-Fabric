@@ -4,7 +4,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
-import net.thebrewingminer.dynamicoreveins.codec.DebugSettings;
 import net.thebrewingminer.dynamicoreveins.codec.OreVeinConfig;
 import net.thebrewingminer.dynamicoreveins.codec.VeinSettingsConfig;
 import net.thebrewingminer.dynamicoreveins.codec.condition.IVeinCondition;
@@ -15,10 +14,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import static net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistryHolder.getActiveDebugSettings;
+
 public final class PrepareList {
-    public static DebugSettings debugSettings = OreVeinRegistryHolder.getActiveDebugSettings();
     private static final Map<Double, List<OreVeinConfig>> cachedLists = new ConcurrentHashMap<>();
-    private static double cachedShuffleSourceSeed = Double.NEGATIVE_INFINITY;     // Debug
+    private static volatile double cachedShuffleSourceSeed = Double.NEGATIVE_INFINITY;     // Debug
 
     private PrepareList(){}
 
@@ -78,7 +78,7 @@ public final class PrepareList {
         // Lazily compute the shuffled list and cache the result for the "region."
         List<OreVeinConfig> veinList = cachedLists.computeIfAbsent(shuffleSourceSeed, shuffledList -> prepareList(shuffleSourceSeed, veinContext.seed(), settings.vanillaVeinsEnabled(), settings.vanillaVeinsPrioritized()));
 
-        if(debugSettings.printShuffledList()){
+        if(getActiveDebugSettings().printShuffledList()){
             if (!(cachedShuffleSourceSeed == shuffleSourceSeed)) {
                 Registry<OreVeinConfig> veinRegistry = OreVeinRegistryHolder.getVeinRegistry();
                 List<Identifier> currentList = veinList.stream()
