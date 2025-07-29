@@ -38,8 +38,4 @@ public class OreVeinRegistryHolder {
     public static DebugSettings getActiveDebugSettings(){
         return getActiveConfig().debugSettings();
     }
-
-    public static boolean isInitialized(){
-        return registryManager != null;
-    }
 }
