@@ -1,7 +1,7 @@
 package net.thebrewingminer.dynamicoreveins;
 
 import net.fabricmc.api.ModInitializer;
-import net.thebrewingminer.dynamicoreveins.event.LifecycleServerEvent;
+import net.thebrewingminer.dynamicoreveins.event.ModServerLifecycleEvents;
 import net.thebrewingminer.dynamicoreveins.registry.OreVeinRegistries;
 
 public class DynamicOreVeins implements ModInitializer {
@@ -13,6 +13,6 @@ public class DynamicOreVeins implements ModInitializer {
 		// Proceed with mild caution.
 
 		OreVeinRegistries.register();
-		LifecycleServerEvent.registerEvents();
+		ModServerLifecycleEvents.registerEvents();
 	}
 }
