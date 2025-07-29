@@ -84,7 +84,7 @@ public final class PrepareList {
                 List<Identifier> currentList = veinList.stream()
                     .map(vein -> {
                         RegistryKey<OreVeinConfig> key = veinRegistry.getKey(vein).orElse(null);
-                        return key != null ? key.getValue() : new Identifier("unregistered");
+                        return key != null ? key.getValue() : Identifier.tryParse("unregistered");
                     })
                     .toList();
 

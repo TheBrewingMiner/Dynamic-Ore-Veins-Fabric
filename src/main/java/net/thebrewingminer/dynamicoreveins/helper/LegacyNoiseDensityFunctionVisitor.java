@@ -61,7 +61,7 @@ public class LegacyNoiseDensityFunctionVisitor implements DensityFunction.Densit
 
     private DensityFunction applyNotCached(DensityFunction densityFunction) {
         if (densityFunction instanceof InterpolatedNoiseSampler interpolatedNoiseSampler) {
-            Random random = this.usesLegacyRandom ? this.createRandom(0L) : this.randomSplitter.split(new Identifier("terrain"));
+            Random random = this.usesLegacyRandom ? this.createRandom(0L) : this.randomSplitter.split(Identifier.ofVanilla("terrain"));
             return interpolatedNoiseSampler.copyWithRandom(random);
         } else {
             return ((densityFunction instanceof DensityFunctionTypes.EndIslands) ? new DensityFunctionTypes.EndIslands(seed) : densityFunction);
