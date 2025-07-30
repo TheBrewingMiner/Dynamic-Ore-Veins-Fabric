@@ -50,17 +50,17 @@ public class CreateVein {
             RegistryKey<World> currDimension = wgContext.getDimension();
 
             // If missing required info, log once and return null
-            if (currDimension == null || chunkGenerator == null || heightLimitView == null) {
-                System.err.println("-------------------------------------------------------------------------------------------------------");
-                System.err.println("[DOV] Warning: Worldgen context missing during BlockStateSampler evaluation. Skipping vein placement.");
-                System.err.println("  -> NoiseChunk = " + noiseChunk);
-                System.err.println("  -> generator = " + chunkGenerator);
-                System.err.println("  -> dimensionKey = " + currDimension);
-                System.err.println("  -> heightAccessor = " + heightLimitView);
-                System.err.println("  -> Pos = " + pos);
-                System.err.println("-------------------------------------------------------------------------------------------------------");
-                return null;
-            }
+//            if (currDimension == null || chunkGenerator == null || heightLimitView == null) {
+//                System.err.println("-------------------------------------------------------------------------------------------------------");
+//                System.err.println("[DOV] Warning: Worldgen context missing during BlockStateSampler evaluation. Skipping vein placement.");
+//                System.err.println("  -> NoiseChunk = " + noiseChunk);
+//                System.err.println("  -> generator = " + chunkGenerator);
+//                System.err.println("  -> dimensionKey = " + currDimension);
+//                System.err.println("  -> heightAccessor = " + heightLimitView);
+//                System.err.println("  -> Pos = " + pos);
+//                System.err.println("-------------------------------------------------------------------------------------------------------");
+//                return null;
+//            }
 
             // Grab the rest of the information from the chunk generator settings.
             boolean usesLegacyRandom = chunkGenSettings.usesLegacyRandom();
